@@ -25,6 +25,10 @@ For example,
 
 **Required** A valid label with the prefix `jira-worklog` 
 
+#### `ghtoken`
+
+**Required** The GitHub token Default `null`
+
 ### Outputs
 `result` - True if update was successful.
 
