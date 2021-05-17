@@ -8731,7 +8731,8 @@ async function run(){
     }
 
     updateWorklog(function(result){
-        console.log(label_wl+" was added to the worklog for "+jiraIssue)
+        console.log(label_wl+" was added to the worklog for "+jiraIssue);
+        core.setOutput("result",true);
     });
 }
 run();
