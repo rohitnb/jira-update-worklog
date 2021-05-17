@@ -8702,7 +8702,10 @@ const jiraIssue = core.getInput('jira-issue');
 const jiraToken = core.getInput('jira-token'); 
 const jiraDomain = core.getInput('jira-domain');
 const prLabel = core.getInput('prLabel');
+const ghtoken = core.getInput('ghtoken');
 //END INPUTS
+
+const octokit = github.getOctokit(ghtoken);
 
 async function run(){
     const label_wl = prLabel.split(":")[1];
@@ -8732,6 +8735,13 @@ async function run(){
 
     updateWorklog(function(result){
         console.log(label_wl+" was added to the worklog for "+jiraIssue);
+        console.log("Removing the "+prLabel+" label from this PR now");
+        var removedLabel = octokit.rest.issues.removeLabel({
+            owner: github.context.repo.owner,
+            repo: github.context.repo.repo,
+            issue_number: github.context.payload.pull_request.number,
+            name: prLabel
+          });
         core.setOutput("result",true);
     });
 }

@@ -17,6 +17,10 @@ inputs:
         description: 'PR Label with the correct format - jira-worklog:30m - here 30m is a valid worklog item for JIRA. Also supports d,h,s,w'
         required: true
         default: 'null'
+    ghtoken:
+        description: 'GitHub Token'
+        required: true
+        default: 'null'
 outputs:
     result:
         description: 'Flag - Final Result'
